@@ -1,3 +1,4 @@
+@import '@savvy/core/tokens/theme.css';
 @import 'tailwindcss';
 
 @theme {
