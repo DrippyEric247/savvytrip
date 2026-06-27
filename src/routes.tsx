@@ -1,5 +1,11 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { ProtectedRoute } from './components/auth/ProtectedRoute'
 import { AppShell } from './components/layout/AppShell'
+import { AuthCallbackPage } from './pages/auth/AuthCallbackPage'
+import { ForgotPasswordPage } from './pages/auth/ForgotPasswordPage'
+import { LoginPage } from './pages/auth/LoginPage'
+import { RegisterPage } from './pages/auth/RegisterPage'
+import { ResetPasswordPage } from './pages/auth/ResetPasswordPage'
 import { AIGoPage } from './pages/AIGoPage'
 import { AppsPage } from './pages/AppsPage'
 import { AssistantPage } from './pages/AssistantPage'
@@ -19,7 +25,19 @@ import { WalletPage } from './pages/WalletPage'
 export function AppRoutes() {
   return (
     <Routes>
-      <Route element={<AppShell />}>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
+      <Route path="/auth/callback" element={<AuthCallbackPage />} />
+
+      <Route
+        element={
+          <ProtectedRoute>
+            <AppShell />
+          </ProtectedRoute>
+        }
+      >
         <Route index element={<HomePage />} />
         <Route path="search" element={<SearchPage />} />
         <Route path="routes" element={<RoutesPage />} />
@@ -36,6 +54,8 @@ export function AppRoutes() {
         <Route path="rewards" element={<RewardsPage />} />
         <Route path="assistant" element={<AssistantPage />} />
       </Route>
+
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }

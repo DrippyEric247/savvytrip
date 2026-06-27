@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import { LiveIndicator } from '../ui/LiveIndicator'
 import { NeonButton } from '../ui/NeonButton'
 
@@ -44,7 +45,11 @@ function navLinkClass(isActive: boolean) {
 }
 
 export function AppShell() {
+  const { user, logout } = useAuth()
   const [open, setOpen] = useState(false)
+  const displayName = user?.username || user?.email || 'Operator'
+  const savvyPoints = Number(user?.savvyPoints)
+  const savvyLabel = Number.isFinite(savvyPoints) ? `${Math.round(savvyPoints).toLocaleString()} Savvy` : null
 
   return (
     <div className="min-h-dvh">
@@ -91,6 +96,24 @@ export function AppShell() {
           </div>
 
           <div className="hidden shrink-0 items-center gap-2 sm:flex sm:gap-3 md:gap-3">
+            {savvyLabel ? (
+              <Link
+                to="/wallet"
+                className="hidden rounded-lg border border-sky-500/30 bg-sky-500/10 px-2.5 py-1.5 text-xs font-medium text-sky-200 md:inline-flex"
+              >
+                {savvyLabel}
+              </Link>
+            ) : null}
+            <span className="hidden max-w-[8rem] truncate text-xs text-slate-400 lg:inline" title={displayName}>
+              {displayName}
+            </span>
+            <button
+              type="button"
+              onClick={logout}
+              className="hidden rounded-lg border border-white/10 px-2.5 py-1.5 text-xs text-slate-300 hover:bg-white/5 md:inline-flex"
+            >
+              Sign out
+            </button>
             <LiveIndicator label="Engines warm" />
             <NeonButton className="hidden md:inline-flex">Launch planner</NeonButton>
           </div>
@@ -143,7 +166,25 @@ export function AppShell() {
                 </div>
               </div>
             ))}
-            <NeonButton className="mt-2 w-full">Launch planner</NeonButton>
+            <div className="mt-2 flex flex-col gap-2 border-t border-white/5 pt-3">
+              {savvyLabel ? (
+                <Link to="/wallet" className="rounded-lg bg-sky-500/10 px-3 py-2 text-sm text-sky-200" onClick={() => setOpen(false)}>
+                  {savvyLabel}
+                </Link>
+              ) : null}
+              <p className="px-3 text-xs text-slate-500">Signed in as {displayName}</p>
+              <button
+                type="button"
+                className="rounded-lg border border-white/10 px-3 py-2 text-sm text-slate-200"
+                onClick={() => {
+                  logout()
+                  setOpen(false)
+                }}
+              >
+                Sign out
+              </button>
+              <NeonButton className="w-full">Launch planner</NeonButton>
+            </div>
           </nav>
         </div>
       </header>
@@ -153,7 +194,7 @@ export function AppShell() {
       </main>
 
       <footer className="relative z-10 border-t border-white/5 bg-slate-950/80 py-8 text-center text-xs text-slate-500 backdrop-blur-sm">
-        SavvyTrip · Savvy Universe shell · Phase 2 routing · APIs later.
+        SavvyTrip · Savvy Universe shell · Phase 3 auth · APIs later.
       </footer>
     </div>
   )
