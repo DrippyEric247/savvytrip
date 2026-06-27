@@ -1,34 +1,56 @@
-import type { ReactNode } from 'react'
 import { useState } from 'react'
+import { NavLink, Outlet } from 'react-router-dom'
 import { LiveIndicator } from '../ui/LiveIndicator'
 import { NeonButton } from '../ui/NeonButton'
 
-const nav = [
-  { href: '#dashboard', label: 'Home' },
-  { href: '#wallet', label: 'Wallet' },
-  { href: '#connected-apps', label: 'Apps' },
-  { href: '#ecosystem-activity', label: 'Feed' },
-  { href: '#smart-combos', label: 'Combos' },
-  { href: '#search', label: 'Search' },
-  { href: '#routes', label: 'Routes' },
-  { href: '#ezstay', label: 'EZStay' },
-  { href: '#final10', label: 'Final10' },
-  { href: '#aigo', label: 'AI-Go' },
-  { href: '#unified-rewards', label: 'Rewards' },
-  { href: '#deals', label: 'Deals' },
-  { href: '#assistant', label: 'AI' },
-  { href: '#saved', label: 'Saved' },
-  { href: '#trending', label: 'Trending' },
+const navGroups = [
+  {
+    label: 'Plan',
+    items: [
+      { to: '/', label: 'Home', end: true },
+      { to: '/search', label: 'Search' },
+      { to: '/routes', label: 'Routes' },
+      { to: '/saved', label: 'Saved' },
+      { to: '/deals', label: 'Deals' },
+      { to: '/trending', label: 'Trending' },
+    ],
+  },
+  {
+    label: 'Ecosystem',
+    items: [
+      { to: '/wallet', label: 'Wallet' },
+      { to: '/apps', label: 'Apps' },
+      { to: '/feed', label: 'Feed' },
+      { to: '/combos', label: 'Combos' },
+      { to: '/ezstay', label: 'EZStay' },
+      { to: '/final10', label: 'Final10' },
+      { to: '/aigo', label: 'AI-Go' },
+      { to: '/rewards', label: 'Rewards' },
+    ],
+  },
+  {
+    label: 'Assist',
+    items: [{ to: '/assistant', label: 'AI' }],
+  },
 ] as const
 
-export function AppShell({ children }: { children: ReactNode }) {
+function navLinkClass(isActive: boolean) {
+  return [
+    'shrink-0 whitespace-nowrap rounded-lg px-2 py-2 text-xs transition-colors sm:px-2.5 sm:text-sm',
+    isActive
+      ? 'bg-white/10 text-sky-200'
+      : 'text-slate-400 hover:bg-white/5 hover:text-slate-100',
+  ].join(' ')
+}
+
+export function AppShell() {
   const [open, setOpen] = useState(false)
 
   return (
     <div className="min-h-dvh">
       <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/70 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 sm:gap-3 sm:px-6">
-          <a href="#dashboard" className="group flex shrink-0 items-center gap-2">
+          <NavLink to="/" className="group flex shrink-0 items-center gap-2" onClick={() => setOpen(false)}>
             <span
               className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-violet-500 font-outfit text-lg font-bold text-slate-950 shadow-glow-sm"
               aria-hidden
@@ -38,21 +60,32 @@ export function AppShell({ children }: { children: ReactNode }) {
             <span className="font-outfit text-lg font-semibold tracking-tight text-white">
               Savvy<span className="text-sky-300">Trip</span>
             </span>
-          </a>
+          </NavLink>
 
           <div className="hidden min-w-0 flex-1 justify-center lg:flex">
             <nav
-              className="flex max-w-full gap-0.5 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex max-w-full items-center gap-1 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               aria-label="Primary"
             >
-              {nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="shrink-0 whitespace-nowrap rounded-lg px-2 py-2 text-xs text-slate-400 transition-colors hover:bg-white/5 hover:text-slate-100 sm:px-2.5 sm:text-sm"
-                >
-                  {item.label}
-                </a>
+              {navGroups.map((group, groupIndex) => (
+                <div key={group.label} className="flex items-center gap-0.5">
+                  {groupIndex > 0 ? (
+                    <span className="mx-1 hidden h-4 w-px shrink-0 bg-white/10 xl:block" aria-hidden />
+                  ) : null}
+                  <span className="hidden px-1 text-[10px] font-semibold uppercase tracking-widest text-slate-600 xl:inline">
+                    {group.label}
+                  </span>
+                  {group.items.map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={'end' in item ? item.end : false}
+                      className={({ isActive }) => navLinkClass(isActive)}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
               ))}
             </nav>
           </div>
@@ -87,26 +120,40 @@ export function AppShell({ children }: { children: ReactNode }) {
             open ? 'block' : 'hidden',
           ].join(' ')}
         >
-          <nav className="flex flex-col gap-1" aria-label="Mobile primary">
-            {nav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="rounded-lg px-3 py-2 text-sm text-slate-200 hover:bg-white/5"
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </a>
+          <nav className="flex flex-col gap-3" aria-label="Mobile primary">
+            {navGroups.map((group) => (
+              <div key={group.label}>
+                <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-widest text-slate-600">
+                  {group.label}
+                </p>
+                <div className="flex flex-col gap-0.5">
+                  {group.items.map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={'end' in item ? item.end : false}
+                      className={({ isActive }) =>
+                        ['rounded-lg px-3 py-2 text-sm', isActive ? 'bg-white/10 text-sky-200' : 'text-slate-200 hover:bg-white/5'].join(' ')
+                      }
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
             ))}
             <NeonButton className="mt-2 w-full">Launch planner</NeonButton>
           </nav>
         </div>
       </header>
 
-      <main className="relative z-10 mx-auto max-w-6xl px-4 pb-20 pt-8 sm:px-6 sm:pt-12">{children}</main>
+      <main className="relative z-10 mx-auto max-w-6xl px-4 pb-20 pt-8 sm:px-6 sm:pt-12">
+        <Outlet />
+      </main>
 
       <footer className="relative z-10 border-t border-white/5 bg-slate-950/80 py-8 text-center text-xs text-slate-500 backdrop-blur-sm">
-        SavvyTrip · Savvy Universe shell · frontend-only · APIs later.
+        SavvyTrip · Savvy Universe shell · Phase 2 routing · APIs later.
       </footer>
     </div>
   )
