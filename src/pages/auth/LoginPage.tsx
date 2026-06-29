@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthLayout } from '../../components/auth/AuthLayout'
 import { SocialAuthButtons } from '../../components/auth/SocialAuthButtons'
@@ -6,7 +6,7 @@ import { useAuth } from '../../context/AuthContext'
 import { parseApiError } from '../../lib/auth/apiErrorParsing'
 
 export function LoginPage() {
-  const { login } = useAuth()
+  const { login, error: authError } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = (location.state as { from?: string } | null)?.from || '/'
@@ -15,6 +15,10 @@ export function LoginPage() {
   const [password, setPassword] = useState('')
   const [err, setErr] = useState('')
   const [busy, setBusy] = useState(false)
+
+  useEffect(() => {
+    if (authError) setErr(authError)
+  }, [authError])
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -54,6 +58,9 @@ export function LoginPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <label htmlFor="login-password" className="block text-sm text-slate-300">
+          Password
+        </label>
         <input
           id="login-password"
           name="password"

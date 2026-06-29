@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { GuestRoute } from './components/auth/GuestRoute'
 import { ProtectedRoute } from './components/auth/ProtectedRoute'
 import { AppShell } from './components/layout/AppShell'
 import { AuthCallbackPage } from './pages/auth/AuthCallbackPage'
@@ -25,8 +26,22 @@ import { WalletPage } from './pages/WalletPage'
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+      <Route
+        path="/login"
+        element={
+          <GuestRoute>
+            <LoginPage />
+          </GuestRoute>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <GuestRoute>
+            <RegisterPage />
+          </GuestRoute>
+        }
+      />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/auth/callback" element={<AuthCallbackPage />} />
