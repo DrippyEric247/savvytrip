@@ -1,4 +1,5 @@
 import { savvyWallet, walletRecentActivity } from '../../data/ecosystemMockData'
+import { useAuth } from '../../context/AuthContext'
 import { appShortName } from './appTokens'
 import { LiveIndicator } from '../ui/LiveIndicator'
 
@@ -7,7 +8,10 @@ function formatSavvy(n: number) {
 }
 
 export function SavvyWallet() {
+  const { user } = useAuth()
   const w = savvyWallet
+  const liveBalance = Number(user?.savvyPoints)
+  const balanceSavvy = Number.isFinite(liveBalance) ? liveBalance : w.balanceSavvy
 
   return (
     <div className="relative">
@@ -40,7 +44,7 @@ export function SavvyWallet() {
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Universal Savvy Wallet</p>
               <p className="mt-1 font-outfit text-4xl font-bold tracking-tight text-white tabular-nums sm:text-5xl">
-                {formatSavvy(w.balanceSavvy)}
+                {formatSavvy(balanceSavvy)}
                 <span className="ml-2 text-lg font-semibold text-sky-300 sm:text-xl">Savvy</span>
               </p>
               <p className="mt-1 text-sm text-slate-400">
