@@ -12,7 +12,11 @@ function isLocalDevHost() {
 export function getApiOrigin() {
   const configured = savvytripAuthConfig.apiOrigin
   if (configured) return configured
-  if (isLocalDevHost()) return LOCAL_API
+  // Same-origin + Vite proxy only during `vite dev` — not `vite preview` or production.
+  if (import.meta.env.DEV && isLocalDevHost()) {
+    if (typeof window !== 'undefined') return window.location.origin
+    return LOCAL_API
+  }
   return 'https://api.final10.app'
 }
 

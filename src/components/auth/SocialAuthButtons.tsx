@@ -7,6 +7,15 @@ export function SocialAuthButtons({ mode = 'login' }: { mode?: 'login' | 'signup
 
   useEffect(() => {
     let active = true
+    const onLocalWithoutApi =
+      !import.meta.env.VITE_API_URL &&
+      typeof window !== 'undefined' &&
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    // Skip provider probe when no API is configured locally (dev or preview).
+    if (onLocalWithoutApi) {
+      setProviders({ google: false, apple: false, loaded: true })
+      return undefined
+    }
     getAuthProviders()
       .then((p) => {
         if (active) setProviders({ ...p, loaded: true })

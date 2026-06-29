@@ -16,29 +16,37 @@ page.on('console', (msg) => {
 page.on('pageerror', (err) => pageErrors.push(err.message))
 
 const response = await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 })
-await page.waitForSelector('#hero-heading', { timeout: 10000 })
+await page.waitForURL(/\/login$/, { timeout: 10000 })
+await page.waitForSelector('h1', { timeout: 10000 })
 await page.screenshot({ path: screenshotPath, fullPage: false })
 
 const checks = {
   status: response?.status() ?? 0,
   title: await page.title(),
   hasSavvyTripBrand: (await page.locator('text=SavvyTrip').count()) > 0,
-  hasHeroHeading: (await page.locator('#hero-heading').count()) > 0,
-  hasStartSmartSearch: (await page.getByRole('button', { name: 'Start smart search' }).count()) > 0,
-  routesPageOk: false,
+  loginRedirectOk: /\/login$/.test(page.url()),
+  hasLoginHeading: (await page.getByRole('heading', { name: 'Welcome back' }).count()) > 0,
+  hasSignInButton: (await page.getByRole('button', { name: 'Sign in' }).count()) > 0,
+  routesProtectedOk: false,
   consoleErrors,
   pageErrors,
   screenshotPath,
 }
 
 await page.goto(`${url}routes`, { waitUntil: 'networkidle', timeout: 30000 })
-await page.waitForSelector('#routes-heading', { timeout: 10000 })
-checks.routesPageOk = true
-
-await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 })
+await page.waitForURL(/\/login$/, { timeout: 10000 })
+checks.routesProtectedOk = true
 
 writeFileSync(join(process.cwd(), 'scripts', 'verify-dev-preview-result.json'), JSON.stringify(checks, null, 2))
 console.log(JSON.stringify(checks, null, 2))
 
 await browser.close()
-process.exit(checks.consoleErrors.length || checks.pageErrors.length || !checks.hasSavvyTripBrand ? 1 : 0)
+const ok =
+  checks.hasSavvyTripBrand &&
+  checks.loginRedirectOk &&
+  checks.hasLoginHeading &&
+  checks.hasSignInButton &&
+  checks.routesProtectedOk &&
+  checks.consoleErrors.length === 0 &&
+  checks.pageErrors.length === 0
+process.exit(ok ? 0 : 1)
