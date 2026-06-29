@@ -1,157 +1,151 @@
 {
-  "generatedAt": "2026-06-29T20:28:00.583Z",
+  "generatedAt": "2026-06-29T22:33:43.129Z",
   "baseUrl": "http://localhost:5173",
   "findings": [
     {
-      "severity": "critical",
-      "category": "Protected routes",
-      "title": "Unauthenticated access to /alerts",
-      "details": "Landed on chrome-error://chromewebdata/"
-    },
-    {
-      "severity": "medium",
+      "severity": "high",
       "category": "Authentication",
-      "title": "Logged-in user can still view /login",
-      "details": "No redirect to app home"
+      "title": "OAuth callback without token does not reach login",
+      "details": "http://localhost:5173/"
     }
   ],
   "screenResults": [
     {
       "path": "/",
-      "desktopLoadMs": 2002,
+      "desktopLoadMs": 693,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/search",
-      "desktopLoadMs": 1985,
+      "desktopLoadMs": 696,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/routes",
-      "desktopLoadMs": 1535,
+      "desktopLoadMs": 674,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/routes/cheapest",
-      "desktopLoadMs": 954,
+      "desktopLoadMs": 674,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/saved",
-      "desktopLoadMs": 2052,
+      "desktopLoadMs": 670,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/deals",
-      "desktopLoadMs": 1070,
+      "desktopLoadMs": 666,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/trending",
-      "desktopLoadMs": 886,
+      "desktopLoadMs": 686,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/wallet",
-      "desktopLoadMs": 1051,
+      "desktopLoadMs": 691,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/apps",
-      "desktopLoadMs": 747,
+      "desktopLoadMs": 679,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/feed",
-      "desktopLoadMs": 763,
+      "desktopLoadMs": 673,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/combos",
-      "desktopLoadMs": 754,
+      "desktopLoadMs": 682,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/ezstay",
-      "desktopLoadMs": 748,
+      "desktopLoadMs": 668,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/final10",
-      "desktopLoadMs": 729,
+      "desktopLoadMs": 669,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/aigo",
-      "desktopLoadMs": 706,
+      "desktopLoadMs": 746,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/rewards",
-      "desktopLoadMs": 710,
+      "desktopLoadMs": 668,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/assistant",
-      "desktopLoadMs": 700,
+      "desktopLoadMs": 662,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/alerts",
-      "desktopLoadMs": 901,
+      "desktopLoadMs": 670,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/alerts/new",
-      "desktopLoadMs": 778,
+      "desktopLoadMs": 676,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/scout-report",
-      "desktopLoadMs": 758,
+      "desktopLoadMs": 685,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
     },
     {
       "path": "/scout-goals",
-      "desktopLoadMs": 819,
+      "desktopLoadMs": 675,
       "mobileOverflow": false,
       "desktopConsoleErrors": 0,
       "mobileConsoleErrors": 0
@@ -159,11 +153,11 @@
   ],
   "perf": {
     "_type": "Response",
-    "_guid": "response@a16c94924b314fb2592501f60ea6dacb"
+    "_guid": "response@e91f74fbdcfe12ee356eb73394d2d16a"
   },
   "timing": {
-    "domContentLoaded": 137,
-    "loadEvent": 137,
+    "domContentLoaded": 138,
+    "loadEvent": 139,
     "transferSize": 1394
   }
 }

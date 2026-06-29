@@ -1,12 +1,12 @@
 {
-  "mode": "preview",
-  "baseUrl": "http://localhost:4173/",
-  "timestamp": "2026-06-29T20:26:42.671Z",
+  "mode": "dev",
+  "baseUrl": "http://localhost:5173/",
+  "timestamp": "2026-06-29T22:32:13.946Z",
   "results": [
     {
       "name": "ProtectedRoute: / redirects to /login",
       "pass": true,
-      "url": "http://localhost:4173/login"
+      "url": "http://localhost:5173/login"
     },
     {
       "name": "Login flow: page renders",
@@ -27,21 +27,21 @@
     {
       "name": "Dashboard: home loads when session is valid",
       "pass": true,
-      "url": "http://localhost:4173/",
+      "url": "http://localhost:5173/",
       "consoleErrors": [],
       "pageErrors": []
     },
     {
       "name": "Navigation: Routes link works",
       "pass": true,
-      "url": "http://localhost:4173/routes",
+      "url": "http://localhost:5173/routes",
       "consoleErrors": [],
       "pageErrors": []
     },
     {
       "name": "Navigation: Wallet link works",
       "pass": true,
-      "url": "http://localhost:4173/wallet",
+      "url": "http://localhost:5173/wallet",
       "consoleErrors": [],
       "pageErrors": []
     }
