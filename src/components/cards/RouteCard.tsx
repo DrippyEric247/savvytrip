@@ -1,4 +1,7 @@
-import type { RouteOption } from '../../data/mockData'
+import { Link } from 'react-router-dom'
+import type { RouteOption } from '../../domain/travel'
+import { getSavvyTripServices } from '../../services'
+import { useTripSearch } from '../../context/TripSearchContext'
 import { GlassPanel } from '../ui/GlassPanel'
 import { NeonButton } from '../ui/NeonButton'
 import { ModeIcon } from '../icons/TravelIcons'
@@ -8,13 +11,19 @@ type RouteCardProps = {
 }
 
 export function RouteCard({ route }: RouteCardProps) {
+  const { lastSearch } = useTripSearch()
+  const services = getSavvyTripServices()
+
+  const handleSave = async () => {
+    if (!lastSearch?.params) return
+    await services.savedTrips.saveFromRoute(route, lastSearch.params)
+    void services.scout.recordAction('save_route')
+  }
+
   return (
     <GlassPanel
       glow={route.highlight}
-      className={[
-        'flex h-full flex-col',
-        route.highlight ? 'ring-1 ring-violet-400/40' : '',
-      ].join(' ')}
+      className={['flex h-full flex-col', route.highlight ? 'ring-1 ring-violet-400/40' : ''].join(' ')}
     >
       <div className="mb-4 flex items-start justify-between gap-3">
         <div>
@@ -65,9 +74,16 @@ export function RouteCard({ route }: RouteCardProps) {
         ))}
       </ol>
 
-      <NeonButton variant={route.highlight ? 'primary' : 'outline'} className="w-full">
-        Open itinerary
-      </NeonButton>
+      <div className="flex flex-col gap-2">
+        <Link to={`/routes/${route.id}`}>
+          <NeonButton variant={route.highlight ? 'primary' : 'outline'} className="w-full">
+            Open itinerary
+          </NeonButton>
+        </Link>
+        <NeonButton variant="ghost" className="w-full" onClick={() => void handleSave()} disabled={!lastSearch?.params}>
+          Save to trips
+        </NeonButton>
+      </div>
     </GlassPanel>
   )
 }

@@ -1,11 +1,13 @@
 import { SavvyWallet } from '../ecosystem/SavvyWallet'
 import { ConnectedAppsPanel } from '../ecosystem/ConnectedAppsPanel'
+import { CoreDependencyBanner } from '../ui/CoreDependencyBanner'
 import { SectionHeading } from '../ui/SectionHeading'
 import { LiveIndicator } from '../ui/LiveIndicator'
 
 export function SavvyWalletSection() {
   return (
     <section id="wallet" className="mt-16 scroll-mt-28 lg:scroll-mt-24">
+      <CoreDependencyBanner feature="Universal wallet HUD" waitingOn="@savvy/core wallet + useSavvyPoints()" />
       <SectionHeading
         id="wallet-heading"
         eyebrow="Savvy Universe"

@@ -1,11 +1,13 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import type { RouteMode } from '../../domain/travel'
+import { useTripSearch } from '../../context/TripSearchContext'
 import { GlassPanel } from '../ui/GlassPanel'
 import { LiveIndicator } from '../ui/LiveIndicator'
 import { LoadingBar } from '../ui/LoadingBar'
 import { NeonButton } from '../ui/NeonButton'
 import { SectionHeading } from '../ui/SectionHeading'
 import { ModeIcon } from '../icons/TravelIcons'
-import type { RouteMode } from '../../data/mockData'
 
 const modes: { id: RouteMode; label: string }[] = [
   { id: 'flight', label: 'Flights' },
@@ -15,10 +17,15 @@ const modes: { id: RouteMode; label: string }[] = [
 ]
 
 export function SmartRouteSearch() {
+  const navigate = useNavigate()
+  const { searching, searchError, runSearch } = useTripSearch()
+  const [from, setFrom] = useState('New York, NY')
+  const [to, setTo] = useState('Chicago, IL')
+  const [depart, setDepart] = useState('2026-06-12')
+  const [returnDate, setReturnDate] = useState('2026-06-15')
   const [activeModes, setActiveModes] = useState<Set<RouteMode>>(
     () => new Set(['flight', 'train', 'rideshare', 'hotel']),
   )
-  const [searching, setSearching] = useState(false)
 
   const toggle = (id: RouteMode) => {
     setActiveModes((prev) => {
@@ -29,9 +36,16 @@ export function SmartRouteSearch() {
     })
   }
 
-  const handlePreviewSearch = () => {
-    setSearching(true)
-    window.setTimeout(() => setSearching(false), 2200)
+  const handleSearch = async () => {
+    if (activeModes.size === 0) return
+    await runSearch({
+      from,
+      to,
+      depart,
+      returnDate: returnDate || undefined,
+      modes: [...activeModes],
+    })
+    navigate('/routes')
   }
 
   return (
@@ -40,7 +54,7 @@ export function SmartRouteSearch() {
         id="search-heading"
         eyebrow="Smart route search"
         title="Describe the trip. SavvyTrip handles the math."
-        description="Mix modes, set priorities, and preview how each constraint reshapes price, duration, and comfort — all client-side for this foundation build."
+        description="Mix modes, set priorities, and compare cheapest, fastest, and best overall — mock adapter today, live graph when APIs land."
         action={<LiveIndicator label="Search mesh ready" />}
       />
 
@@ -52,7 +66,8 @@ export function SmartRouteSearch() {
               <input
                 className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-3 py-2.5 text-slate-100 outline-none ring-sky-400/40 placeholder:text-slate-600 focus:border-sky-400/50 focus:ring-2"
                 placeholder="City or station"
-                defaultValue="New York, NY"
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
               />
             </label>
             <label className="block space-y-1.5 text-sm">
@@ -60,7 +75,8 @@ export function SmartRouteSearch() {
               <input
                 className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-3 py-2.5 text-slate-100 outline-none ring-sky-400/40 placeholder:text-slate-600 focus:border-sky-400/50 focus:ring-2"
                 placeholder="City or airport"
-                defaultValue="Chicago, IL"
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
               />
             </label>
           </div>
@@ -70,7 +86,8 @@ export function SmartRouteSearch() {
               <input
                 type="date"
                 className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-3 py-2.5 text-slate-100 outline-none ring-sky-400/40 focus:border-sky-400/50 focus:ring-2"
-                defaultValue="2026-06-12"
+                value={depart}
+                onChange={(e) => setDepart(e.target.value)}
               />
             </label>
             <label className="block space-y-1.5 text-sm">
@@ -78,7 +95,8 @@ export function SmartRouteSearch() {
               <input
                 type="date"
                 className="w-full rounded-xl border border-white/10 bg-slate-950/60 px-3 py-2.5 text-slate-100 outline-none ring-sky-400/40 focus:border-sky-400/50 focus:ring-2"
-                defaultValue="2026-06-15"
+                value={returnDate}
+                onChange={(e) => setReturnDate(e.target.value)}
               />
             </label>
           </div>
@@ -108,16 +126,17 @@ export function SmartRouteSearch() {
             </div>
           </div>
 
-          <NeonButton className="w-full sm:w-auto" onClick={handlePreviewSearch}>
-            {searching ? 'Composing routes…' : 'Preview Savvy routes'}
+          {searchError ? <p className="text-sm text-red-300">{searchError}</p> : null}
+
+          <NeonButton className="w-full sm:w-auto" onClick={() => void handleSearch()} disabled={searching || activeModes.size === 0}>
+            {searching ? 'Composing routes…' : 'Search Savvy routes'}
           </NeonButton>
         </div>
 
         <div className="space-y-4 rounded-2xl border border-white/5 bg-slate-950/50 p-4">
-          <p className="text-sm font-medium text-slate-200">Search intelligence (demo)</p>
+          <p className="text-sm font-medium text-slate-200">Search intelligence</p>
           <p className="text-xs leading-relaxed text-slate-500">
-            When the backend lands, this panel streams live graph updates, hub stress, and policy-aware swaps. For
-            now, it mirrors the feel of a fast optimizer at work.
+            Mock adapter personalizes legs for your origin/destination. Swap to `VITE_SAVVYTRIP_ADAPTER=api` when travel endpoints ship.
           </p>
           {searching ? (
             <div className="space-y-3 pt-1">

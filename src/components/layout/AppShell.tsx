@@ -12,6 +12,7 @@ const navGroups = [
       { to: '/search', label: 'Search' },
       { to: '/routes', label: 'Routes' },
       { to: '/saved', label: 'Saved' },
+      { to: '/planner', label: 'Planner' },
       { to: '/deals', label: 'Deals' },
       { to: '/trending', label: 'Trending' },
     ],
@@ -31,7 +32,12 @@ const navGroups = [
   },
   {
     label: 'Assist',
-    items: [{ to: '/assistant', label: 'AI' }],
+    items: [
+      { to: '/assistant', label: 'AI' },
+      { to: '/alerts', label: 'Alerts' },
+      { to: '/scout-goals', label: 'Scout' },
+      { to: '/scout-report', label: 'Report' },
+    ],
   },
 ] as const
 
@@ -115,7 +121,9 @@ export function AppShell() {
               Sign out
             </button>
             <LiveIndicator label="Engines warm" />
-            <NeonButton className="hidden md:inline-flex">Launch planner</NeonButton>
+            <Link to="/planner">
+              <NeonButton className="hidden md:inline-flex">Launch planner</NeonButton>
+            </Link>
           </div>
 
           <button
@@ -183,7 +191,9 @@ export function AppShell() {
               >
                 Sign out
               </button>
-              <NeonButton className="w-full">Launch planner</NeonButton>
+              <Link to="/planner" onClick={() => setOpen(false)}>
+                <NeonButton className="w-full">Launch planner</NeonButton>
+              </Link>
             </div>
           </nav>
         </div>
@@ -194,7 +204,7 @@ export function AppShell() {
       </main>
 
       <footer className="relative z-10 border-t border-white/5 bg-slate-950/80 py-8 text-center text-xs text-slate-500 backdrop-blur-sm">
-        SavvyTrip · Savvy Universe shell · Phase 3 auth · APIs later.
+        SavvyTrip · Service adapter: mock · swap via VITE_SAVVYTRIP_ADAPTER=api
       </footer>
     </div>
   )

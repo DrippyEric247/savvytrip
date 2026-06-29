@@ -191,7 +191,7 @@ SavvyTrip is suitable for a **small internal alpha** with Savvy Universe account
 
 ## 7. Verified fixes from this audit
 
-### Committed (SavvyTrip `main`)
+### Committed on `main` (Phase 3 + QA)
 
 | Commit area | Change |
 |-------------|--------|
@@ -199,13 +199,17 @@ SavvyTrip is suitable for a **small internal alpha** with Savvy Universe account
 | Auth | **Login** — password label + surface session expiry message |
 | Auth | **ProtectedRoute** — preserve query string in post-login redirect |
 | Wallet | **SavvyWallet** — prefer session `savvyPoints` over mock balance |
+| QA | **QA_BUG_REPORT**, audit scripts, runtime stability checks, screenshots |
 
-### Working tree only (not committed — depends on uncommitted services layer)
+### Phase 3.5 PR (`phase-3.5/services-deep-links`)
 
-- **RequestState** — accessibility roles for loading/error  
-- **AlertsSection** — build fix (LiveIndicator)  
-- **Router** — deep link routes (`/routes/:id`, `/alerts`, scout, planner)  
-- **AppShell** — nav entries for alerts, scout, planner
+| Area | Change |
+|------|--------|
+| Services | Mock adapter layer (`src/services/`) with typed interfaces |
+| Deep links | Routes + pages for `/routes/:id`, `/alerts`, scout, planner |
+| UI | **RequestState** loading/error/empty wrapper with a11y roles |
+| Sections | Wire search, saved, deals, alerts, scout to mock services |
+| Nav | AppShell entries for alerts, scout, planner |
 
 ---
 

@@ -1,5 +1,6 @@
 import { unifiedRewards } from '../../data/ecosystemMockData'
 import { GlassPanel } from '../ui/GlassPanel'
+import { CoreDependencyBanner } from '../ui/CoreDependencyBanner'
 import { SectionHeading } from '../ui/SectionHeading'
 import { LiveIndicator } from '../ui/LiveIndicator'
 
@@ -8,6 +9,7 @@ export function UnifiedRewardsSection() {
 
   return (
     <section id="unified-rewards" className="mt-20 scroll-mt-28 lg:scroll-mt-24">
+      <CoreDependencyBanner feature="Unified rewards ledger" waitingOn="@savvy/core rewards store + /ecosystem/rewards/summary" />
       <SectionHeading
         id="unified-rewards-heading"
         eyebrow="Unified rewards tracker"

@@ -1,17 +1,24 @@
+import { useMemo } from 'react'
+import { Link } from 'react-router-dom'
+import { getSavvyTripServices } from '../../services'
+import { useAsyncData } from '../../hooks/useAsyncData'
+import { TravelActivityFeed } from '../feed/TravelActivityFeed'
 import { GlassPanel } from '../ui/GlassPanel'
 import { LoadingBar } from '../ui/LoadingBar'
 import { LiveIndicator } from '../ui/LiveIndicator'
 import { NeonButton } from '../ui/NeonButton'
-import { TravelActivityFeed } from '../feed/TravelActivityFeed'
-import { activityFeed } from '../../data/mockData'
+import { RequestState } from '../ui/RequestState'
 
 export function HeroDashboard() {
+  const services = useMemo(() => getSavvyTripServices(), [])
+  const loader = useMemo(() => () => services.activity.listFeed(), [services])
+  const { state, reload } = useAsyncData(loader, [services])
+
+  const feed = state.status === 'success' ? state.data : []
+  const feedLoading = state.status === 'loading' || state.status === 'idle'
+
   return (
-    <section
-      id="dashboard"
-      className="scroll-mt-28 lg:scroll-mt-24"
-      aria-labelledby="hero-heading"
-    >
+    <section id="dashboard" className="scroll-mt-28 lg:scroll-mt-24" aria-labelledby="hero-heading">
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
         <div className="space-y-6">
           <div className="flex flex-wrap items-center gap-2">
@@ -43,8 +50,12 @@ export function HeroDashboard() {
           </p>
 
           <div className="flex flex-wrap gap-3">
-            <NeonButton>Start smart search</NeonButton>
-            <NeonButton variant="outline">View sample itinerary</NeonButton>
+            <Link to="/search">
+              <NeonButton>Start smart search</NeonButton>
+            </Link>
+            <Link to="/routes">
+              <NeonButton variant="outline">View sample routes</NeonButton>
+            </Link>
           </div>
 
           <GlassPanel className="grid gap-5 sm:grid-cols-3" glow>
@@ -59,24 +70,24 @@ export function HeroDashboard() {
               <p className="mt-1 text-xs text-slate-400">vs. single-mode booking</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest text-slate-500">Avg. rebook time</p>
-              <p className="mt-1 font-outfit text-2xl font-semibold text-sky-300">340ms</p>
+              <p className="text-xs uppercase tracking-widest text-slate-500">Rebook latency</p>
+              <p className="mt-1 font-outfit text-2xl font-semibold text-white">340ms</p>
               <p className="mt-1 text-xs text-slate-400">simulated edge response</p>
             </div>
           </GlassPanel>
 
-          <GlassPanel>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-500">Live optimization pulse</p>
-            <div className="space-y-4">
-              <LoadingBar progress={78} label="Fare graph sync" />
-              <LoadingBar label="Clustering alternate hubs" />
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-xs text-slate-500">
+              <span>Fare graph sync</span>
+              <span>78%</span>
             </div>
-          </GlassPanel>
+            <LoadingBar progress={78} />
+          </div>
         </div>
 
-        <GlassPanel className="lg:sticky lg:top-28" glow>
-          <TravelActivityFeed items={activityFeed} />
-        </GlassPanel>
+        <RequestState loading={feedLoading} error={state.status === 'error' ? state.error : null} onRetry={reload}>
+          <TravelActivityFeed items={feed} />
+        </RequestState>
       </div>
     </section>
   )

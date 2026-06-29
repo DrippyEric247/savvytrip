@@ -8,6 +8,8 @@ import { LoginPage } from './pages/auth/LoginPage'
 import { RegisterPage } from './pages/auth/RegisterPage'
 import { ResetPasswordPage } from './pages/auth/ResetPasswordPage'
 import { AIGoPage } from './pages/AIGoPage'
+import { AlertNewPage } from './pages/AlertNewPage'
+import { AlertsPage } from './pages/AlertsPage'
 import { AppsPage } from './pages/AppsPage'
 import { AssistantPage } from './pages/AssistantPage'
 import { CombosPage } from './pages/CombosPage'
@@ -16,9 +18,13 @@ import { EZStayPage } from './pages/EZStayPage'
 import { FeedPage } from './pages/FeedPage'
 import { Final10Page } from './pages/Final10Page'
 import { HomePage } from './pages/HomePage'
+import { PlannerPage } from './pages/PlannerPage'
 import { RewardsPage } from './pages/RewardsPage'
+import { RouteDetailPage } from './pages/RouteDetailPage'
 import { RoutesPage } from './pages/RoutesPage'
 import { SavedPage } from './pages/SavedPage'
+import { ScoutGoalsPage } from './pages/ScoutGoalsPage'
+import { ScoutReportPage } from './pages/ScoutReportPage'
 import { SearchPage } from './pages/SearchPage'
 import { TrendingPage } from './pages/TrendingPage'
 import { WalletPage } from './pages/WalletPage'
@@ -56,9 +62,15 @@ export function AppRoutes() {
         <Route index element={<HomePage />} />
         <Route path="search" element={<SearchPage />} />
         <Route path="routes" element={<RoutesPage />} />
+        <Route path="routes/:id" element={<RouteDetailPage />} />
         <Route path="saved" element={<SavedPage />} />
         <Route path="deals" element={<DealsPage />} />
         <Route path="trending" element={<TrendingPage />} />
+        <Route path="alerts" element={<AlertsPage />} />
+        <Route path="alerts/new" element={<AlertNewPage />} />
+        <Route path="planner" element={<PlannerPage />} />
+        <Route path="scout-goals" element={<ScoutGoalsPage />} />
+        <Route path="scout-report" element={<ScoutReportPage />} />
         <Route path="wallet" element={<WalletPage />} />
         <Route path="apps" element={<AppsPage />} />
         <Route path="feed" element={<FeedPage />} />
