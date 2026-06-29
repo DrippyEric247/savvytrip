@@ -10,12 +10,11 @@
 
 | Item | Value |
 |------|-------|
-| **Final commit (beta readiness merge)** | See `git log -1 --oneline` after push — recorded at handoff time below |
+| **Final commit (beta readiness merge)** | **`3528f5a`** — `feat(beta): merge architecture polish and beta readiness` |
 | **Architecture base** | `39c6357` — feat(phase-3.5): mock services layer and deep-link routes |
 | **Phase 3.5 merge** | `8395ac0` — docs: Phase 3.5 handoff report |
+| **QA baseline refresh** | `f4a8b2c` — chore(qa): refresh post-Phase 3.5 merge regression baselines |
 | **Branch** | `main` (includes fast-forward merge from `phase-3.5/services-deep-links`) |
-
-> **Note:** Run `git rev-parse HEAD` locally for the exact final hash if this doc was committed in the same batch.
 
 ---
 
