@@ -1,12 +1,18 @@
-import { unifiedRewards } from '../../data/ecosystemMockData'
-import { GlassPanel } from '../ui/GlassPanel'
+import { CORE_INTEGRATION } from '../../lib/coreIntegrationPoints'
+import { CoreBlockedPanel } from '../ui/CoreBlockedPanel'
 import { CoreDependencyBanner } from '../ui/CoreDependencyBanner'
 import { SectionHeading } from '../ui/SectionHeading'
 import { LiveIndicator } from '../ui/LiveIndicator'
 
-export function UnifiedRewardsSection() {
-  const u = unifiedRewards
+const previewRows = [
+  { label: 'Total ecosystem points', value: '—' },
+  { label: 'Monthly savings', value: '—' },
+  { label: 'Travel savings', value: '—' },
+  { label: 'Shopping savings', value: '—' },
+  { label: 'Combo bonuses', value: '—' },
+]
 
+export function UnifiedRewardsSection() {
   return (
     <section id="unified-rewards" className="mt-20 scroll-mt-28 lg:scroll-mt-24">
       <CoreDependencyBanner feature="Unified rewards ledger" waitingOn="@savvy/core rewards store + /ecosystem/rewards/summary" />
@@ -14,43 +20,23 @@ export function UnifiedRewardsSection() {
         id="unified-rewards-heading"
         eyebrow="Unified rewards tracker"
         title="One ledger for ecosystem points and real dollars saved."
-        description="Travel wins from SavvyTrip + EZStay + AI-Go, shopping wins from Final10, and combo bonuses — aggregated for the month (mock)."
-        action={<LiveIndicator label="Rewards sync" />}
+        description="Aggregates travel wins from SavvyTrip, EZStay, and AI-Go with shopping wins from the Savvy Universe — activates when Core rewards and the ecosystem BFF connect."
+        action={<LiveIndicator label="Pending sync" />}
       />
-      <GlassPanel className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]" glow>
-        <div className="space-y-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">Total ecosystem points</p>
-            <p className="mt-1 font-outfit text-4xl font-bold tabular-nums text-transparent bg-clip-text bg-gradient-to-r from-sky-200 to-violet-200">
-              {u.ecosystemPointsTotal.toLocaleString('en-US')}
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-3 transition-colors hover:border-sky-400/25">
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">Monthly savings</p>
-              <p className="mt-1 font-outfit text-xl font-semibold text-white">{u.monthlySavingsUsd}</p>
+      <CoreBlockedPanel
+        title="Rewards summary not yet connected"
+        description="This panel will show your combined Savvy balance activity, monthly savings, and cross-app combo bonuses once the shared rewards store and ecosystem summary API are wired."
+        integrationTodo={CORE_INTEGRATION.REWARDS_SUMMARY}
+      >
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {previewRows.map((row) => (
+            <div key={row.label} className="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3">
+              <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">{row.label}</p>
+              <p className="mt-1 font-outfit text-2xl font-semibold tabular-nums text-slate-600">{row.value}</p>
             </div>
-            <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-3 transition-colors hover:border-violet-400/25">
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">Combo bonuses</p>
-              <p className="mt-1 font-outfit text-xl font-semibold text-violet-200 tabular-nums">
-                +{u.comboBonusesSavvy.toLocaleString('en-US')} Savvy
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-xl border border-sky-400/20 bg-sky-500/5 px-3 py-3">
-            <p className="text-[10px] font-semibold uppercase tracking-wide text-sky-300/80">Travel savings</p>
-            <p className="mt-1 font-outfit text-2xl font-semibold text-sky-100">{u.travelSavingsUsd}</p>
-            <p className="mt-1 text-[11px] text-slate-500">SavvyTrip · EZStay · AI-Go</p>
-          </div>
-          <div className="rounded-xl border border-fuchsia-400/20 bg-fuchsia-500/5 px-3 py-3">
-            <p className="text-[10px] font-semibold uppercase tracking-wide text-fuchsia-300/80">Shopping savings</p>
-            <p className="mt-1 font-outfit text-2xl font-semibold text-fuchsia-100">{u.shoppingSavingsUsd}</p>
-            <p className="mt-1 text-[11px] text-slate-500">Final10 quick snipes</p>
-          </div>
-        </div>
-      </GlassPanel>
+      </CoreBlockedPanel>
     </section>
   )
 }

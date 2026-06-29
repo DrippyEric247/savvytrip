@@ -49,7 +49,7 @@ export function SavedTripsSection() {
         id="saved-heading"
         eyebrow="Saved trips"
         title="Itineraries you are shaping, watching, or ready to book."
-        description="Persisted locally via mock adapter — swaps to /travel/saved API without UI changes."
+        description="Persisted on this device — syncs to /travel/saved when the travel API adapter is enabled."
         action={
           <NeonButton variant="ghost" onClick={() => void handleNew()}>
             New trip

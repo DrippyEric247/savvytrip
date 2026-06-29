@@ -111,7 +111,7 @@ export function RouteDetailSection({ routeId: routeIdProp }: { routeId?: string 
             </ol>
 
             <p className="text-xs text-slate-500">
-              Booking and Savvy earn previews connect when Core rewards + travel APIs land — actions persist locally today.
+              Booking connects when travel partners are integrated. Save and lock actions persist on this device today.
             </p>
           </GlassPanel>
         ) : null}

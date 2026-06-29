@@ -62,7 +62,7 @@ export function HeroDashboard() {
             <div>
               <p className="text-xs uppercase tracking-widest text-slate-500">Optimizer</p>
               <p className="mt-1 font-outfit text-2xl font-semibold text-white">Multi-leg</p>
-              <p className="mt-1 text-xs text-slate-400">12.4M combos evaluated (demo)</p>
+              <p className="mt-1 text-xs text-slate-400">Multimodal path scoring</p>
             </div>
             <div>
               <p className="text-xs uppercase tracking-widest text-slate-500">Median savings</p>
@@ -72,7 +72,7 @@ export function HeroDashboard() {
             <div>
               <p className="text-xs uppercase tracking-widest text-slate-500">Rebook latency</p>
               <p className="mt-1 font-outfit text-2xl font-semibold text-white">340ms</p>
-              <p className="mt-1 text-xs text-slate-400">simulated edge response</p>
+              <p className="mt-1 text-xs text-slate-400">edge response target</p>
             </div>
           </GlassPanel>
 

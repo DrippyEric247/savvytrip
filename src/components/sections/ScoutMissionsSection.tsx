@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { CORE_INTEGRATION } from '../../lib/coreIntegrationPoints'
 import { TRAVEL_SCOUT_MISSIONS } from '../../config/travelScoutMissions'
 import { PILOT_SCOUT, PILOT_SCOUT_COPY } from '../../config/pilotScoutBranding'
 import { getSavvyTripServices } from '../../services'
@@ -19,6 +20,7 @@ export function ScoutMissionsSection() {
   const progress = state.status === 'success' ? state.data : []
 
   const claim = async (missionId: string) => {
+    // TODO(core): dispatch SCOUT_MISSION_* + claim API; credit via useSavvyPoints / SavvyRewardHost
     await services.scout.markClaimed(missionId)
     reload()
   }
@@ -70,9 +72,7 @@ export function ScoutMissionsSection() {
             )
           })}
         </div>
-        <p className="mt-4 text-xs text-slate-500">
-          Progress stored locally. Savvy credit dispatches through Core rewards when Phase 2 store lands.
-        </p>
+        <p className="mt-4 text-xs text-slate-500">{CORE_INTEGRATION.SCOUT_CLAIM_API}</p>
       </RequestState>
     </section>
   )

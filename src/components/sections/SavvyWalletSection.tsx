@@ -1,5 +1,5 @@
-import { SavvyWallet } from '../ecosystem/SavvyWallet'
 import { ConnectedAppsPanel } from '../ecosystem/ConnectedAppsPanel'
+import { SessionBalanceCard } from '../wallet/SessionBalanceCard'
 import { CoreDependencyBanner } from '../ui/CoreDependencyBanner'
 import { SectionHeading } from '../ui/SectionHeading'
 import { LiveIndicator } from '../ui/LiveIndicator'
@@ -11,13 +11,13 @@ export function SavvyWalletSection() {
       <SectionHeading
         id="wallet-heading"
         eyebrow="Savvy Universe"
-        title="Universal wallet — one balance, every Savvy app."
-        description="Same glowing wallet system as Final10: live multiplier, streaks, tier progress, session rewards, and cross-app bonuses when your trip touches the full mesh."
-        action={<LiveIndicator label="Ecosystem linked" />}
+        title="Your Savvy balance — universe-wide."
+        description="Session balance from your account. Tier progress, multipliers, and the floating HUD arrive with Savvy Core wallet integration."
+        action={<LiveIndicator label="Session linked" />}
       />
       <div className="grid gap-6 lg:grid-cols-5 lg:items-stretch">
         <div className="lg:col-span-3">
-          <SavvyWallet />
+          <SessionBalanceCard />
         </div>
         <div id="connected-apps" className="scroll-mt-28 lg:col-span-2 lg:scroll-mt-24">
           <ConnectedAppsPanel />

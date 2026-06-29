@@ -17,8 +17,8 @@ export function Final10Section() {
       <SectionHeading
         id="final10-heading"
         eyebrow="Final10"
-        title="Travel essentials snipes — mock catalog, no live Final10 API."
-        description="Illustrative snipe cards from mock adapter. Live Final10 integration deferred intentionally."
+        title="Travel essentials for your carry-on and cabin."
+        description="Curated gear suggestions for active trips — live Final10 catalog connects via ecosystem BFF, not direct API coupling."
         action={<LiveIndicator label="Snipes hot" />}
       />
       <RequestState loading={loading} error={state.status === 'error' ? state.error : null} onRetry={reload}>

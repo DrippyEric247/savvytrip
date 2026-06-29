@@ -1,4 +1,5 @@
 import type { SavvyTripServices } from './interfaces'
+import { CORE_INTEGRATION } from '../lib/coreIntegrationPoints'
 import { mockActivityService } from './adapters/mock/activity'
 import { mockAlertsService } from './adapters/mock/alerts'
 import { mockCopilotService } from './adapters/mock/copilot'
@@ -20,9 +21,8 @@ function resolveAdapterKind(): ServiceAdapterKind {
 export function createSavvyTripServices(): SavvyTripServices {
   const kind = resolveAdapterKind()
   if (kind === 'api') {
-    throw new Error(
-      'API adapter not wired yet. Set VITE_SAVVYTRIP_ADAPTER=mock or omit until Core Phase 2+ backends ship.',
-    )
+    // TODO(api): Implement src/services/adapters/api/* implementing SavvyTripServices interfaces
+    throw new Error(`${CORE_INTEGRATION.TRAVEL_API} — set VITE_SAVVYTRIP_ADAPTER=mock until ready.`)
   }
 
   return {

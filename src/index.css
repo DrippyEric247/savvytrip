@@ -192,10 +192,24 @@
   .animate-savvy-neural-scan,
   .animate-savvy-wallet-gain,
   .animate-savvy-combo-ring,
-  .animate-savvy-border-glow {
+  .animate-savvy-border-glow,
+  .page-transition {
     animation: none;
+    opacity: 1;
+    transform: none;
   }
   html {
     scroll-behavior: auto;
   }
+}
+
+.page-transition {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.page-transition-visible {
+  opacity: 1;
+  transform: translateY(0);
 }

@@ -31,6 +31,7 @@ export function TripSearchProvider({ children }: { children: ReactNode }) {
         const result = await services.travelSearch.search(params)
         setLastSearch(result)
         void services.scout.recordAction('search_routes')
+        // TODO(core): emit BATTLE_PASS_ACTION_EVENT for search_routes via battlePassActionBus
         if (params.modes.length >= 3) {
           void services.scout.recordAction('multi_mode_search')
         }

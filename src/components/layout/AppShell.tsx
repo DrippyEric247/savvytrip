@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { LiveIndicator } from '../ui/LiveIndicator'
 import { NeonButton } from '../ui/NeonButton'
+import { PageTransition } from './PageTransition'
 
 const navGroups = [
   {
@@ -200,7 +201,9 @@ export function AppShell() {
       </header>
 
       <main className="relative z-10 mx-auto max-w-6xl px-4 pb-20 pt-8 sm:px-6 sm:pt-12">
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
 
       <footer className="relative z-10 border-t border-white/5 bg-slate-950/80 py-8 text-center text-xs text-slate-500 backdrop-blur-sm">

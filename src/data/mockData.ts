@@ -71,7 +71,7 @@ export const routeOptions: RouteOption[] = [
 export const activityFeed: FeedItem[] = [
   { id: '1', time: 'Just now', title: 'Live fare drop', detail: 'NYC → Lisbon cluster down 6% in the last hour.', tone: 'deal' },
   { id: '2', time: '2m ago', title: 'Route recomposed', detail: 'Train + rideshare saved 38m vs rideshare-only for SFO → downtown.', tone: 'route' },
-  { id: '3', time: '6m ago', title: 'Savvy Points', detail: 'You would earn +420 pts on the Best overall itinerary (mock).', tone: 'system' },
+  { id: '3', time: '6m ago', title: 'Route insight', detail: 'Best overall itinerary scores highest time-to-price ratio on your corridor.', tone: 'system' },
   { id: '4', time: '14m ago', title: 'Travelers like you', detail: '62% picked train-first for BOS → NYC Friday evenings.', tone: 'social' },
 ]
 

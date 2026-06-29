@@ -61,7 +61,7 @@ export function ConnectedAppsPanel() {
         </ul>
       </RequestState>
       <p className="relative mt-4 text-[11px] leading-relaxed text-slate-500">
-        Mock ecosystem adapter — no Final10 live API calls from SavvyTrip.
+        Partner app status from local catalog — ecosystem BFF replaces this when shared Core contract lands.
       </p>
     </div>
   )

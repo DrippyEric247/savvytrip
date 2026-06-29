@@ -41,6 +41,7 @@ const PROTECTED_ROUTES = [
   '/aigo',
   '/rewards',
   '/assistant',
+  '/planner',
   '/alerts',
   '/alerts/new',
   '/scout-report',

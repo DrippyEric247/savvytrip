@@ -10,7 +10,7 @@ import {
 } from '../../../data/ecosystemMockData'
 import { delay } from '../../types'
 
-/** Ecosystem panel data — mock only until BFF endpoints land. */
+/** Ecosystem panel data — local catalog until ecosystem BFF lands. TODO(api): CORE_INTEGRATION.ECOSYSTEM_BFF */
 export const mockEcosystemService = {
   async getConnectedApps() {
     await delay(140)

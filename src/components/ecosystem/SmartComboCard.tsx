@@ -17,7 +17,9 @@ export function SmartComboCard({ combo }: { combo: SmartCombo }) {
           </span>
         ))}
       </div>
-      <p className="mt-4 border-t border-white/5 pt-3 text-xs font-medium text-sky-300/90">{combo.savvyBonusEstimate}</p>
+      <p className="mt-4 border-t border-white/5 pt-3 text-xs font-medium text-violet-300/90">
+        Multi-app bundle · bonus tracking connects with Savvy Core rewards
+      </p>
     </GlassPanel>
   )
 }

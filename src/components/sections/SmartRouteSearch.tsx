@@ -54,7 +54,7 @@ export function SmartRouteSearch() {
         id="search-heading"
         eyebrow="Smart route search"
         title="Describe the trip. SavvyTrip handles the math."
-        description="Mix modes, set priorities, and compare cheapest, fastest, and best overall — mock adapter today, live graph when APIs land."
+        description="Mix modes, set priorities, and compare cheapest, fastest, and best overall itineraries."
         action={<LiveIndicator label="Search mesh ready" />}
       />
 
@@ -136,7 +136,7 @@ export function SmartRouteSearch() {
         <div className="space-y-4 rounded-2xl border border-white/5 bg-slate-950/50 p-4">
           <p className="text-sm font-medium text-slate-200">Search intelligence</p>
           <p className="text-xs leading-relaxed text-slate-500">
-            Mock adapter personalizes legs for your origin/destination. Swap to `VITE_SAVVYTRIP_ADAPTER=api` when travel endpoints ship.
+            Live graph updates and hub stress signals connect when the travel search API is enabled.
           </p>
           {searching ? (
             <div className="space-y-3 pt-1">
