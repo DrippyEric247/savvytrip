@@ -1,0 +1,55 @@
+{
+  "mode": "preview",
+  "baseUrl": "http://localhost:4173/",
+  "timestamp": "2026-06-29T20:26:42.671Z",
+  "results": [
+    {
+      "name": "ProtectedRoute: / redirects to /login",
+      "pass": true,
+      "url": "http://localhost:4173/login"
+    },
+    {
+      "name": "Login flow: page renders",
+      "pass": true
+    },
+    {
+      "name": "Login flow: /register renders",
+      "pass": true,
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "name": "ProtectedRoute: /routes redirects to /login",
+      "pass": true,
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "name": "Dashboard: home loads when session is valid",
+      "pass": true,
+      "url": "http://localhost:4173/",
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "name": "Navigation: Routes link works",
+      "pass": true,
+      "url": "http://localhost:4173/routes",
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "name": "Navigation: Wallet link works",
+      "pass": true,
+      "url": "http://localhost:4173/wallet",
+      "consoleErrors": [],
+      "pageErrors": []
+    }
+  ],
+  "summary": {
+    "pass": true,
+    "reactPageErrors": [],
+    "consoleErrors": [],
+    "consoleWarnings": []
+  }
+}

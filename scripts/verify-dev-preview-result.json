@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "title": "SavvyTrip — Smart travel, optimized",
+  "hasSavvyTripBrand": true,
+  "loginRedirectOk": true,
+  "hasLoginHeading": true,
+  "hasSignInButton": true,
+  "routesProtectedOk": true,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "screenshotPath": "C:\\Users\\ericv\\OneDrive\\Documents\\New folder\\SavvyTrip\\savvy-trip-home-verification.png"
+}

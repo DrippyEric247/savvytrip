@@ -1,0 +1,169 @@
+{
+  "generatedAt": "2026-06-29T20:28:00.583Z",
+  "baseUrl": "http://localhost:5173",
+  "findings": [
+    {
+      "severity": "critical",
+      "category": "Protected routes",
+      "title": "Unauthenticated access to /alerts",
+      "details": "Landed on chrome-error://chromewebdata/"
+    },
+    {
+      "severity": "medium",
+      "category": "Authentication",
+      "title": "Logged-in user can still view /login",
+      "details": "No redirect to app home"
+    }
+  ],
+  "screenResults": [
+    {
+      "path": "/",
+      "desktopLoadMs": 2002,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/search",
+      "desktopLoadMs": 1985,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/routes",
+      "desktopLoadMs": 1535,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/routes/cheapest",
+      "desktopLoadMs": 954,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/saved",
+      "desktopLoadMs": 2052,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/deals",
+      "desktopLoadMs": 1070,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/trending",
+      "desktopLoadMs": 886,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/wallet",
+      "desktopLoadMs": 1051,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/apps",
+      "desktopLoadMs": 747,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/feed",
+      "desktopLoadMs": 763,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/combos",
+      "desktopLoadMs": 754,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/ezstay",
+      "desktopLoadMs": 748,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/final10",
+      "desktopLoadMs": 729,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/aigo",
+      "desktopLoadMs": 706,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/rewards",
+      "desktopLoadMs": 710,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/assistant",
+      "desktopLoadMs": 700,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/alerts",
+      "desktopLoadMs": 901,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/alerts/new",
+      "desktopLoadMs": 778,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/scout-report",
+      "desktopLoadMs": 758,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    },
+    {
+      "path": "/scout-goals",
+      "desktopLoadMs": 819,
+      "mobileOverflow": false,
+      "desktopConsoleErrors": 0,
+      "mobileConsoleErrors": 0
+    }
+  ],
+  "perf": {
+    "_type": "Response",
+    "_guid": "response@a16c94924b314fb2592501f60ea6dacb"
+  },
+  "timing": {
+    "domContentLoaded": 137,
+    "loadEvent": 137,
+    "transferSize": 1394
+  }
+}
