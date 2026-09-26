@@ -11,6 +11,7 @@ export type AuthUser = {
   firstName?: string
   lastName?: string
   savvyPoints?: number
+  role?: string
   [key: string]: unknown
 }
 

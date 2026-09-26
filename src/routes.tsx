@@ -28,6 +28,7 @@ import { ScoutReportPage } from './pages/ScoutReportPage'
 import { SearchPage } from './pages/SearchPage'
 import { TrendingPage } from './pages/TrendingPage'
 import { WalletPage } from './pages/WalletPage'
+import { SavvyTripCoreProofPage } from './pages/dev/SavvyTripCoreProofPage'
 
 export function AppRoutes() {
   return (
@@ -72,6 +73,7 @@ export function AppRoutes() {
         <Route path="scout-goals" element={<ScoutGoalsPage />} />
         <Route path="scout-report" element={<ScoutReportPage />} />
         <Route path="wallet" element={<WalletPage />} />
+        <Route path="dev/savvy-core-proof" element={<SavvyTripCoreProofPage />} />
         <Route path="apps" element={<AppsPage />} />
         <Route path="feed" element={<FeedPage />} />
         <Route path="combos" element={<CombosPage />} />

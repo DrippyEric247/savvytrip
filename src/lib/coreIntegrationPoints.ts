@@ -4,7 +4,7 @@
  */
 export const CORE_INTEGRATION = {
   /** @savvy/core rewards — useSavvyPoints(), SavvyRewardHost, registerPointActions */
-  REWARDS_STORE: 'TODO(core): Wire useSavvyPoints() from @savvy/core/rewards — replace SessionBalanceCard balance read',
+  REWARDS_STORE: 'Wired: SavvyCoreContext + /savvytrip-core/account (SessionBalanceCard prefers Core balance)',
   REWARD_TOAST: 'TODO(core): Mount SavvyRewardHost from @savvy/core/rewards for earn animations',
   TRAVEL_POINT_ACTIONS: 'TODO(core): registerPointActions(travelPointActions) at app bootstrap',
   /** @savvy/core wallet HUD */

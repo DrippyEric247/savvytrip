@@ -1,3 +1,4 @@
+import { SavvyTripCoreStatusPanel } from '../core/SavvyTripCoreStatusPanel'
 import { ConnectedAppsPanel } from '../ecosystem/ConnectedAppsPanel'
 import { SessionBalanceCard } from '../wallet/SessionBalanceCard'
 import { CoreDependencyBanner } from '../ui/CoreDependencyBanner'
@@ -7,7 +8,7 @@ import { LiveIndicator } from '../ui/LiveIndicator'
 export function SavvyWalletSection() {
   return (
     <section id="wallet" className="mt-16 scroll-mt-28 lg:scroll-mt-24">
-      <CoreDependencyBanner feature="Universal wallet HUD" waitingOn="@savvy/core wallet + useSavvyPoints()" />
+      <CoreDependencyBanner feature="Universal wallet HUD bubble" waitingOn="@savvy/core SavvyWalletBubble (reads now sync from Core)" />
       <SectionHeading
         id="wallet-heading"
         eyebrow="Savvy Universe"
@@ -19,8 +20,11 @@ export function SavvyWalletSection() {
         <div className="lg:col-span-3">
           <SessionBalanceCard />
         </div>
-        <div id="connected-apps" className="scroll-mt-28 lg:col-span-2 lg:scroll-mt-24">
-          <ConnectedAppsPanel />
+        <div className="lg:col-span-2 space-y-6">
+          <SavvyTripCoreStatusPanel />
+          <div id="connected-apps" className="scroll-mt-28 lg:scroll-mt-24">
+            <ConnectedAppsPanel />
+          </div>
         </div>
       </div>
     </section>

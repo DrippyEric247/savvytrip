@@ -1,4 +1,5 @@
 import { useAuth } from '../../context/AuthContext'
+import { useSavvyCore } from '../../context/SavvyCoreContext'
 import { GlassPanel } from '../ui/GlassPanel'
 import { LiveIndicator } from '../ui/LiveIndicator'
 
@@ -12,8 +13,20 @@ function formatSavvy(n: number) {
  */
 export function SessionBalanceCard() {
   const { user } = useAuth()
-  const points = Number(user?.savvyPoints)
-  const hasBalance = Number.isFinite(points)
+  const { snapshot, unavailable, loading: coreLoading } = useSavvyCore()
+  const coreBalance = snapshot?.balance
+  const sessionPoints = Number(user?.savvyPoints)
+  const points: number | null = Number.isFinite(coreBalance)
+    ? (coreBalance as number)
+    : Number.isFinite(sessionPoints)
+      ? sessionPoints
+      : null
+  const hasBalance = points != null
+  const sourceLabel = Number.isFinite(coreBalance)
+    ? 'Savvy Core · authoritative'
+    : unavailable
+      ? 'Session fallback · Core unavailable'
+      : 'Universe account · session'
 
   return (
     <div className="relative">
@@ -38,17 +51,21 @@ export function SessionBalanceCard() {
               ) : (
                 <p className="mt-1 font-outfit text-2xl font-semibold text-slate-400">Balance unavailable</p>
               )}
-              <p className="mt-1 text-sm text-slate-400">Universe account · synced from your session</p>
+              <p className="mt-1 text-sm text-slate-400">{sourceLabel}</p>
             </div>
-            <LiveIndicator label={hasBalance ? 'Session synced' : 'Awaiting sync'} />
+            <LiveIndicator
+              label={
+                coreLoading ? 'Core syncing…' : hasBalance ? (Number.isFinite(coreBalance) ? 'Core synced' : 'Session synced') : 'Awaiting sync'
+              }
+            />
           </div>
 
           <div className="rounded-xl border border-white/10 bg-slate-950/50 px-4 py-3 text-sm text-slate-400">
-            <p className="font-medium text-slate-300">Wallet features coming with Savvy Core</p>
+            <p className="font-medium text-slate-300">Core-linked balance active</p>
             <ul className="mt-2 list-inside list-disc space-y-1 text-xs leading-relaxed">
-              <li>Tier progress and multipliers</li>
-              <li>Session earn history and floating HUD</li>
-              <li>Cross-app combo bonus tracking</li>
+              <li>Tier, prestige, and XP shown in the Core status panel</li>
+              <li>Rewards must flow through Savvy Core (no local ledger)</li>
+              <li>Floating HUD and earn toasts — next Core UI phase</li>
             </ul>
           </div>
 
