@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { AuthLayout } from '../../components/auth/AuthLayout'
 import { useAuth } from '../../context/AuthContext'
+import { consumeOAuthReturnTo } from '../../lib/auth/runtimeApi'
 
 export function AuthCallbackPage() {
   const { completeSocialLogin } = useAuth()
@@ -21,7 +22,7 @@ export function AuthCallbackPage() {
     }
 
     void completeSocialLogin(token)
-      .then(() => navigate('/', { replace: true }))
+      .then(() => navigate(consumeOAuthReturnTo('/'), { replace: true }))
       .catch(() => setErr('Social sign-in failed. Please try again or use email.'))
   }, [completeSocialLogin, navigate, searchParams])
 

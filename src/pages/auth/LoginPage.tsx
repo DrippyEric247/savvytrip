@@ -9,7 +9,11 @@ export function LoginPage() {
   const { login, error: authError } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const from = (location.state as { from?: string } | null)?.from || '/'
+  const returnToParam = new URLSearchParams(location.search).get('returnTo')
+  const from =
+    (returnToParam && returnToParam.startsWith('/') ? returnToParam : null) ||
+    (location.state as { from?: string } | null)?.from ||
+    '/'
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

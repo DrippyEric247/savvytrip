@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react'
-import { buildAuthUrl } from '../../lib/auth/runtimeApi'
+import { buildOAuthStartUrl } from '../../lib/auth/runtimeApi'
 import { getAuthProviders } from '../../lib/auth/api'
 
-export function SocialAuthButtons({ mode = 'login' }: { mode?: 'login' | 'signup' }) {
+export function SocialAuthButtons({
+  mode = 'login',
+  oauthReturnTo,
+}: {
+  mode?: 'login' | 'signup'
+  oauthReturnTo?: string
+}) {
   const [providers, setProviders] = useState({ google: false, apple: false, loaded: false })
 
   useEffect(() => {
@@ -28,7 +34,7 @@ export function SocialAuthButtons({ mode = 'login' }: { mode?: 'login' | 'signup
     }
   }, [])
 
-  const googleUrl = buildAuthUrl('google')
+  const googleUrl = buildOAuthStartUrl('google', { returnTo: oauthReturnTo })
   const verb = mode === 'signup' ? 'Sign up' : 'Continue'
 
   if (!googleUrl) return null

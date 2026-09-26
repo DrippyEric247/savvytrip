@@ -4,6 +4,7 @@ import { SavvyTripCoreStatusPanel } from '../../components/core/SavvyTripCoreSta
 import { GlassPanel } from '../../components/ui/GlassPanel'
 import { NeonButton } from '../../components/ui/NeonButton'
 import { useAuth } from '../../context/AuthContext'
+import { isCoreProofHarnessEnabled } from '../../lib/auth/betaAccess'
 import { useSavvyCore } from '../../context/SavvyCoreContext'
 import {
   fetchSavvyTripProofBootstrap,
@@ -85,6 +86,21 @@ export function SavvyTripCoreProofPage() {
 
   if (authLoading) {
     return <p className="p-8 text-slate-400">Loading session…</p>
+  }
+
+  if (!isCoreProofHarnessEnabled()) {
+    return (
+      <div className="mx-auto max-w-lg p-8">
+        <h1 className="font-outfit text-2xl font-bold text-white">Savvy Core proof</h1>
+        <p className="mt-2 text-slate-400">
+          The proof harness is disabled in this production build. Wallet Core reads remain available on the wallet
+          page.
+        </p>
+        <Link to="/wallet" className="mt-4 inline-block text-sky-400 underline">
+          Wallet & Core status
+        </Link>
+      </div>
+    )
   }
 
   if (!user) {

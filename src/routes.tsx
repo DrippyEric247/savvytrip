@@ -28,6 +28,8 @@ import { ScoutReportPage } from './pages/ScoutReportPage'
 import { SearchPage } from './pages/SearchPage'
 import { TrendingPage } from './pages/TrendingPage'
 import { WalletPage } from './pages/WalletPage'
+import { CoreProofRoute } from './components/auth/CoreProofRoute'
+import { BetaPage } from './pages/BetaPage'
 import { SavvyTripCoreProofPage } from './pages/dev/SavvyTripCoreProofPage'
 
 export function AppRoutes() {
@@ -52,6 +54,8 @@ export function AppRoutes() {
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/auth/callback" element={<AuthCallbackPage />} />
+      <Route path="/auth/social" element={<AuthCallbackPage />} />
+      <Route path="/beta" element={<BetaPage />} />
 
       <Route
         element={
@@ -73,7 +77,14 @@ export function AppRoutes() {
         <Route path="scout-goals" element={<ScoutGoalsPage />} />
         <Route path="scout-report" element={<ScoutReportPage />} />
         <Route path="wallet" element={<WalletPage />} />
-        <Route path="dev/savvy-core-proof" element={<SavvyTripCoreProofPage />} />
+        <Route
+          path="dev/savvy-core-proof"
+          element={
+            <CoreProofRoute>
+              <SavvyTripCoreProofPage />
+            </CoreProofRoute>
+          }
+        />
         <Route path="apps" element={<AppsPage />} />
         <Route path="feed" element={<FeedPage />} />
         <Route path="combos" element={<CombosPage />} />

@@ -1,0 +1,84 @@
+{
+  "name": "@savvy/core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Savvy Universe shared core — Phase 1 leaf modules (constants, events, tokens). Final10 client unchanged until Phase 2 re-exports.",
+  "main": "src/index.js",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./config/savvyRewards": {
+      "types": "./src/config/savvyRewards.d.ts",
+      "import": "./src/config/savvyRewards.js",
+      "require": "./src/config/savvyRewards.js",
+      "default": "./src/config/savvyRewards.js"
+    },
+    "./config/accountProgression": {
+      "import": "./src/config/accountProgression.js",
+      "require": "./src/config/accountProgression.js",
+      "default": "./src/config/accountProgression.js"
+    },
+    "./config/camoLocker": {
+      "import": "./src/config/camoLocker.js",
+      "require": "./src/config/camoLocker.js",
+      "default": "./src/config/camoLocker.js"
+    },
+    "./config/eggCamoCollection": {
+      "import": "./src/config/eggCamoCollection.js",
+      "require": "./src/config/eggCamoCollection.js",
+      "default": "./src/config/eggCamoCollection.js"
+    },
+    "./config/masterClassifiedCollection": {
+      "import": "./src/config/masterClassifiedCollection.js",
+      "require": "./src/config/masterClassifiedCollection.js",
+      "default": "./src/config/masterClassifiedCollection.js"
+    },
+    "./config/eggKeychainCollection": {
+      "import": "./src/config/eggKeychainCollection.js",
+      "require": "./src/config/eggKeychainCollection.js",
+      "default": "./src/config/eggKeychainCollection.js"
+    },
+    "./config/quantumEgg": {
+      "import": "./src/config/quantumEgg.js",
+      "require": "./src/config/quantumEgg.js",
+      "default": "./src/config/quantumEgg.js"
+    },
+    "./config/contracts": {
+      "import": "./src/config/contracts/index.js",
+      "require": "./src/config/contracts/index.js",
+      "default": "./src/config/contracts/index.js"
+    },
+    "./config/scoutBranding": {
+      "import": "./src/config/scoutBranding.js",
+      "require": "./src/config/scoutBranding.js",
+      "default": "./src/config/scoutBranding.js"
+    },
+    "./config/featureVoting": {
+      "import": "./src/config/featureVoting.js",
+      "require": "./src/config/featureVoting.js",
+      "default": "./src/config/featureVoting.js"
+    },
+    "./events/universeEvents": {
+      "import": "./src/events/universeEvents.js",
+      "require": "./src/events/universeEvents.js",
+      "default": "./src/events/universeEvents.js"
+    },
+    "./tokens/theme.css": "./src/tokens/theme.css",
+    "./core": {
+      "import": "./src/core/index.js",
+      "default": "./src/core/index.js"
+    },
+    "./core/*": {
+      "import": "./src/core/*.js",
+      "default": "./src/core/*.js"
+    }
+  },
+  "scripts": {
+    "verify": "node scripts/verify-parity.js"
+  },
+  "files": [
+    "src",
+    "scripts",
+    "README.md"
+  ]
+}
