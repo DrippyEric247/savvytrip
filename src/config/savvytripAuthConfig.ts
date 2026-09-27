@@ -12,6 +12,8 @@ export const savvytripAuthConfig = {
   storageKey: 'savvy_universe_token',
   /** Set via VITE_API_URL; otherwise runtimeApi picks dev proxy or production host. */
   apiOrigin: normalizeApiOrigin(import.meta.env.VITE_API_URL),
+  /** Public site URL (Vercel/production) — for branding and OAuth registration docs. */
+  publicAppOrigin: normalizeApiOrigin(import.meta.env.VITE_PUBLIC_APP_ORIGIN),
 } as const
 
 export type SavvyTripAuthConfig = typeof savvytripAuthConfig

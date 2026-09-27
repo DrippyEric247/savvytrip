@@ -14,6 +14,19 @@
 | Node | `>=20.11.0` |
 | API | **Final10 / Savvy Universe** — `https://api.final10.app` (or your deployed API host) |
 
+## SavvyTrip on Vercel (recommended)
+
+| Setting | Value |
+|---------|--------|
+| Framework preset | **Vite** (also in `vercel.json`) |
+| Install | `npm install` |
+| Build | `npm run build` |
+| Output | `dist` |
+| Runtime | None — static SPA only (`npm start` not used) |
+| SPA fallback | `vercel.json` rewrite → `/index.html` (hashed files under `/assets/` are served as static files first) |
+
+Set `VITE_*` variables in the Vercel project **before** build (Production and Preview as needed).
+
 ## SavvyTrip on Railway — environment variables
 
 Set **before** the build step (Vite inlines `VITE_*` at build time).
