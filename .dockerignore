@@ -1,0 +1,14 @@
+node_modules
+node_modules/
+dist
+dist/
+.cache
+.cache/
+.vite
+.vite/
+*.log
+.env
+.env.*
+!.env.example
+.git
+qa-screenshots

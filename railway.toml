@@ -1,7 +1,9 @@
 # SavvyTrip static SPA — set VITE_API_URL in Railway service variables before build.
 [build]
 builder = "NIXPACKS"
-buildCommand = "npm ci && npm run build"
+# Nixpacks already runs `npm ci` when package-lock.json exists — do not run it again here
+# (a second `npm ci` can EBUSY on node_modules/.cache during rmdir on Railway).
+buildCommand = "npm run build"
 
 [deploy]
 startCommand = "npm start"

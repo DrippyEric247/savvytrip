@@ -8,8 +8,8 @@
 |------|--------|
 | Framework | React 19 + Vite 8 + TypeScript |
 | Root directory | Repository root (where `package.json` lives) |
-| Install | `npm ci` |
-| Production build | `npm run build` → `dist/` |
+| Install (Railway/Nixpacks) | `npm ci` (automatic when `package-lock.json` exists) |
+| Production build | `npm run build` → `dist/` (Railway `buildCommand` — do not run `npm ci` twice) |
 | Production start | `npm start` → `serve dist -s` (SPA fallback) |
 | Node | `>=20.11.0` |
 | API | **Final10 / Savvy Universe** — `https://api.final10.app` (or your deployed API host) |
